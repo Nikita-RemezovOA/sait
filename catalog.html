@@ -4,77 +4,252 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Каталог - Магазин Простота</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f4;
-        }
-        header {
-            background-color: #333;
-            color: #fff;
-            padding: 10px 0;
-            text-align: center;
-        }
-        nav {
-            background-color: #444;
-            padding: 10px;
-            text-align: center;
-        }
-        nav a {
-            color: #fff;
-            margin: 0 15px;
-            text-decoration: none;
-        }
-        nav a:hover {
-            text-decoration: underline;
-        }
-        .container {
-            padding: 20px;
-        }
-        .product {
-            border: 1px solid #ccc;
-            padding: 10px;
-            margin: 10px 0;
-            background-color: #fff;
-        }
-        footer {
-            background-color: #333;
-            color: #fff;
-            text-align: center;
-            padding: 10px 0;
-            position: fixed;
-            width: 100%;
-            bottom: 0;
-        }
-    </style>
+    <link rel="stylesheet" href="styles.css">
+    <link rel = "stylesheet" href = "style_class.css">
 </head>
+
+
 <body>
     <header>
         <h1>Каталог товаров</h1>
     </header>
+    <script>
+        // Получаем текущий URL
+        const currentPage = window.location.pathname.split('/').pop();
+        
+        // Удаляем активный класс у всех кнопок
+        document.querySelectorAll('.nav-button').forEach(btn => {
+            btn.classList.remove('active');
+        });
+        
+        // Добавляем активный класс текущей странице
+        switch(currentPage) {
+            case 'index.html':
+                document.getElementById('home-btn').classList.add('active');
+                break;
+            case 'catalog.html':
+                document.getElementById('catalog-btn').classList.add('active');
+                break;
+            case 'contacts.html':
+                document.getElementById('contacts-btn').classList.add('active');
+                break;
+        }
+    </script>
     <nav>
-        <a href="index.html">Главная</a>
-        <a href="catalog.html">Каталог</a>
-        <a href="contacts.html">Контакты</a>
+        <div class="nav-buttons">
+            <a href="index.html" class="nav-button" id="home-btn">Главная</a>
+            <a href="catalog.html" class="nav-button" id="catalog-btn">Каталог</a>
+            <a href="contacts.html" class="nav-button" id="contacts-btn">Контакты</a>
+        </div>
     </nav>
-    <div class="container">
-        <div class="product">
-            <h3>Товар 1</h3>
-            <p>Описание товара 1. Цена: 1000 руб.</p>
+
+    
+    <div class="category-buttons">
+        <button class="category-btn active" data-category="all">Все товары</button>
+        <button class="category-btn" data-category="programming">Програмирование</button>
+        <button class="category-btn" data-category="math">Математика</button>
+        <button class="category-btn" data-category="physics">Физика</button>
+    </div>
+
+
+    <div class="products">
+        
+        <!-- Программирование -->
+        <div class="product" id="prod-1" data-category="programming">
+            <img src="images/python-course.jpg" alt="Курс по Python" class="product-img">
+            <div class="product-info">
+                <h3>Python для начинающих</h3>
+                <p class="price">9 900 ₽</p>
+                <button class="buy-btn">Купить</button>
+            </div>
         </div>
-        <div class="product">
-            <h3>Товар 2</h3>
-            <p>Описание товара 2. Цена: 1500 руб.</p>
+    
+        <!-- Математика -->
+        <div class="product" id="prod-2" data-category="math">
+            <img src="images/linear-algebra.jpg" alt="Линейная алгебра" class="product-img">
+            <div class="product-info">
+                <h3>Линейная алгебра</h3>
+                <p class="price">7 500 ₽</p>
+                <button class="buy-btn">Купить</button>
+            </div>
         </div>
-        <div class="product">
-            <h3>Товар 3</h3>
-            <p>Описание товара 3. Цена: 2000 руб.</p>
+    
+        <!-- Физика -->
+        <div class="product" id="prod-3" data-category="physics">
+            <img src="images/quantum-physics.jpg" alt="Квантовая физика" class="product-img">
+            <div class="product-info">
+                <h3>Основы квантовой физики</h3>
+                <p class="price">11 200 ₽</p>
+                <button class="buy-btn">Купить</button>
+            </div>
         </div>
     </div>
-    <footer>
-        <p>&copy; 2023 Магазин "Простота". Все права защищены.</p>
+
+
+
+    <footer class="interactive-footer">
+        <div class="newsletter">
+            <h3>Подпишитесь на обновления</h3>
+            <form>
+                <input type="email" placeholder="Ваш email">
+                <button type="submit">Подписаться</button>
+            </form>
+        </div>
+        
+        <div class="footer-links">
+            <a href="#">О нас</a>
+            <a href="#">Контакты</a>
+            <a href="#">Политика конфиденциальности</a>
+            <a href="#">Условия использования</a>
+        </div>
+        
+        <div class="copyright">
+            © 2025 Ваш сайт. Все права защищены.
+        </div>
     </footer>
+
+
+
+    <!-- Кнопка открытия -->
+<button class="sidebar-toggle" aria-label="Показать разделы">
+    <span>☰</span> Меню
+</button>
+
+<!-- Панель с кнопками-разделами -->
+<nav class="sidebar" aria-label="Разделы каталога">
+    <button class="sidebar-btn">Программирование</button>
+    <button class="sidebar-btn">Математика</button>
+    <button class="sidebar-btn">Физика</button>
+    <button class="sidebar-btn">Искусственный интеллект</button>
+    <button class="sidebar-btn">Кибербезопасность</button>
+</nav>
+
+<!-- Фон для закрытия -->
+<div class="overlay"></div>
+<script>
+  // Данные товаров (должны совпадать с data-category в кнопках)
+const productsData = [
+    {
+        id: "prod-1",
+        name: "Курс Python",
+        category: "programming",
+        price: 9900,
+        image: "img/python.jpg",
+        description: "Программирование на Python с нуля"
+    },
+    {
+        id: "prod-2",
+        name: "Линейная алгебра",
+        category: "math",
+        price: 7500,
+        image: "img/algebra.jpg",
+        description: "Основы матриц и векторов"
+    },
+    {
+        id: "prod-3",
+        name: "Квантовая физика",
+        category: "physics",
+        price: 11200,
+        image: "img/physics.jpg",
+        description: "Введение в квантовую механику"
+    }
+];
+
+// Функция отрисовки товаров
+// Функция отрисовки товаров с анимацией
+function renderProducts(category = 'all') {
+    const productsContainer = document.querySelector('.products');
+    productsContainer.style.opacity = '0'; // Исчезновение старых товаров
+    
+    setTimeout(() => {
+        productsContainer.innerHTML = '';
+        
+        const filteredProducts = category === 'all' 
+            ? productsData 
+            : productsData.filter(product => product.category === category);
+        
+        filteredProducts.forEach((product, index) => {
+            const productElement = document.createElement('div');
+            productElement.className = 'product';
+            productElement.id = product.id;
+            productElement.dataset.category = product.category;
+            productElement.style.animationDelay = `${index * 0.1}s`; // Динамическая задержка
+            
+            productElement.innerHTML = `
+                <img src="${product.image}" alt="${product.name}" class="product-img">
+                <div class="product-info">
+                    <h3>${product.name}</h3>
+                    <p class="description">${product.description}</p>
+                    <p class="price">${product.price.toLocaleString('ru-RU')} ₽</p>
+                </div>
+            `;
+            
+            productsContainer.appendChild(productElement);
+        });
+        
+        productsContainer.style.opacity = '1'; // Появление новых товаров
+    }, 300); // Задержка для плавного исчезновения
+}
+
+// Обработка кликов по кнопкам категорий
+function setupCategoryButtons() {
+    const buttons = document.querySelectorAll('.category-btn');
+    
+    buttons.forEach(button => {
+        button.addEventListener('click', () => {
+            // Удаляем активный класс у всех кнопок
+            buttons.forEach(btn => btn.classList.remove('active'));
+            
+            // Добавляем активный класс текущей кнопке
+            button.classList.add('active');
+            
+            // Фильтруем товары
+            const category = button.dataset.category;
+            renderProducts(category);
+        });
+    });
+}
+
+// Инициализация при загрузке страницы
+document.addEventListener('DOMContentLoaded', () => {
+    renderProducts(); // Показываем все товары по умолчанию
+    setupCategoryButtons();
+});
+</script>
+
+
+<script>
+    // Управление панелью
+    const toggleBtn = document.querySelector('.sidebar-toggle');
+    const sidebar = document.querySelector('.sidebar');
+    const overlay = document.querySelector('.overlay');
+    const sidebarBtns = document.querySelectorAll('.sidebar-btn');
+
+    // Открытие/закрытие
+    toggleBtn.addEventListener('click', () => {
+        sidebar.classList.toggle('active');
+        overlay.style.display = sidebar.classList.contains('active') ? 'block' : 'none';
+    });
+
+    // Закрытие при клике на фон
+    overlay.addEventListener('click', () => {
+        sidebar.classList.remove('active');
+        overlay.style.display = 'none';
+    });
+
+    // Обработка кликов по кнопкам (заглушка)
+    sidebarBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            console.log('Выбран раздел:', btn.textContent);
+            // Здесь можно добавить логику перехода
+            sidebar.classList.remove('active');
+            overlay.style.display = 'none';
+        });
+    });
+</script>
+
+
+
+
 </body>
 </html>

@@ -1,0 +1,107 @@
+/* Общие стили для body */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+/* Стили для шапки */
+header {
+    background-color: #333;
+    color: #fff;
+    padding: 10px 0;
+    text-align: center;
+}
+
+/* Стили для навигационного меню */
+/* Стили навигации */
+.nav-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    padding: 20px;
+    background: #333;
+    
+    margin-bottom: 30px;
+    
+}
+
+.nav-button {
+    padding: 12px 25px;
+    background: #4a6cf7;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    position: relative;
+    border: 2px solid transparent;
+}
+
+.nav-button:hover {
+    background: #3a5bd9;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 10px rgba(0,0,0,0.15);
+}
+
+.nav-button:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+/* Выпуклая рамка при активном состоянии */
+.nav-button.active {
+    border: 2px solid #ffffff;
+    box-shadow: 
+        0 0 0 3px rgba(74, 108, 247, 0.5),
+        inset 0 2px 5px rgba(255,255,255,0.5);
+    background: #3a5bd9;
+    animation: button-pop 0.3s ease;
+}
+
+@keyframes button-pop {
+    0% { transform: scale(0.95); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+/* Стили для контейнера с основным контентом */
+
+/* Стили для подвала */
+/* Базовые настройки */
+
+.page-wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.content {
+    flex: 1;
+    padding-bottom: 100px; /* Отступ = высота футера */
+}
+
+.copyright{
+    text-align: center;   
+}
+.footer-links{
+    text-align: center;
+    padding: 10px 0;
+    margin: 20px;
+}
+.footer {
+    background: #2c3e50;
+    color: white;
+    text-align: center;
+    padding: 40px 0;
+    margin-top: -100px; /* Компенсируем padding-bottom контента */
+    height: 100px;
+    position: relative;
+    z-index: 10;
+    width: 100%;
+    bottom: 0;
+}

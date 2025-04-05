@@ -1,0 +1,104 @@
+    <!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Главная - Магазин Простота</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="style_index.css">
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <h1>Добро пожаловать в магазин курсов</h1>
+            <!-- Добавляем кнопку входа -->
+            <a href="profile/login.html" class="auth-btn">Вход</a>
+        </div>
+
+       
+        
+    </header>
+
+    <script>
+        // Получаем текущий URL
+        const currentPage = window.location.pathname.split('/').pop();
+        
+        // Удаляем активный класс у всех кнопок
+        document.querySelectorAll('.nav-button').forEach(btn => {
+            btn.classList.remove('active');
+        });
+        
+        // Добавляем активный класс текущей странице
+        switch(currentPage) {
+            case 'index.html':
+                document.getElementById('home-btn').classList.add('active');
+                break;
+            case 'catalog.html':
+                document.getElementById('catalog-btn').classList.add('active');
+                break;
+            case 'contacts.html':
+                document.getElementById('contacts-btn').classList.add('active');
+                break;
+        }
+    </script>
+    <nav>
+        <div class="nav-buttons">
+            <a href="index.html" class="nav-button" id="home-btn">Главная</a>
+            <a href="catalog.html" class="nav-button" id="catalog-btn">Каталог</a>
+            <a href="contacts.html" class="nav-button" id="contacts-btn">Контакты</a>
+            <div class="header-container">
+                <!-- Добавляем кнопку входа -->
+                <a href="profile/login.html" class="auth-btn">Вход</a>
+            </div>
+        </div>
+    </nav>
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Онлайн-курсы для будущих гениев</h1>
+            <p>Освойте востребованные навыки с лучшими преподавателями</p>
+            <a href="catalog.html" class="cta-button">Смотреть каталог</a>
+        </div>
+        <div class="hero-slider">
+            <!-- Можно добавить слайдер акционных товаров -->
+        </div>
+    </section>
+
+    <div class="categories-grid">
+        <a href="catalog.html?category=programming" class="category-card">
+            <img src="img/code-icon.svg" alt="Программирование">
+            <h3>Программирование</h3>
+            <p>12 курсов</p>
+        </a>
+        <!-- Аналогично для других категорий -->
+    </div>
+
+    <div class="marquee">
+        <div class="track">
+            <span>🚀 Доступ к материалам навсегда</span>
+            <span>💡 Практические задания</span>
+            <span>🎓 Сертификаты об окончании</span>
+            <!-- Повторить 3-4 раза для бесконечной анимации -->
+        </div>
+    </div>
+    <footer class="interactive-footer">
+        <div class="newsletter">
+            <h3>Подпишитесь на обновления</h3>
+            <form>
+                <input type="email" placeholder="Ваш email">
+                <button type="submit">Подписаться</button>
+            </form>
+        </div>
+        
+        <div class="footer-links">
+            <a href="contacts.html">О нас</a>
+            <a href="contacts.html">Контакты</a>
+            <a href="contacts.html">Политика конфиденциальности</a>
+            <a href="contacts.html">Условия использования</a>
+        </div>
+        
+        <div class="copyright">
+            © 2025 Ваш сайт. Все права защищены.
+        </div>
+    </footer>
+</body>
+</html>

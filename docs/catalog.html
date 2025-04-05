@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Каталог - Магазин Простота</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel = "stylesheet" href = "style_class.css">
+</head>
+
+
+<body>
+    <header>
+        <div class="header-container">
+            <h1>Каталог товаров</h1>
+            <!-- Добавляем кнопку входа -->
+            <a href="profile/login.html" class="auth-btn">Вход</a>
+        </div>
+        
+          
+    </header>
+    <script>
+        // Получаем текущий URL
+        const currentPage = window.location.pathname.split('/').pop();
+        
+        // Удаляем активный класс у всех кнопок
+        document.querySelectorAll('.nav-button').forEach(btn => {
+            btn.classList.remove('active');
+        });
+        
+        // Добавляем активный класс текущей странице
+        switch(currentPage) {
+            case 'index.html':
+                document.getElementById('home-btn').classList.add('active');
+                break;
+            case 'catalog.html':
+                document.getElementById('catalog-btn').classList.add('active');
+                break;
+            case 'contacts.html':
+                document.getElementById('contacts-btn').classList.add('active');
+                break;
+        }
+
+            
+    </script>
+    <nav>
+        <div class="nav-buttons">
+            <a href="index.html" class="nav-button" id="home-btn">Главная</a>
+            <a href="catalog.html" class="nav-button" id="catalog-btn">Каталог</a>
+            <a href="contacts.html" class="nav-button" id="contacts-btn">Контакты</a>
+        </div>
+    </nav>
+
+    
+    <div class="category-buttons">
+        <button class="category-btn active" data-category="all">Все товары</button>
+        <button class="category-btn" data-category="programming">Програмирование</button>
+        <button class="category-btn" data-category="math">Математика</button>
+        <button class="category-btn" data-category="physics">Физика</button>
+    </div>
+
+
+    <div class="products">
+        
+      
+    </div>
+
+
+
+    <footer class="interactive-footer">
+        <div class="newsletter">
+            <h3>Подпишитесь на обновления</h3>
+            <form>
+                <input type="email" placeholder="Ваш email">
+                <button type="submit">Подписаться</button>
+            </form>
+        </div>
+        
+        <div class="footer-links">
+            <a href="#">О нас</a>
+            <a href="#">Контакты</a>
+            <a href="#">Политика конфиденциальности</a>
+            <a href="#">Условия использования</a>
+        </div>
+        
+        <div class="copyright">
+            © 2025 Ваш сайт. Все права защищены.
+        </div>
+    </footer>
+
+
+    
+        <!-- Кнопка открытия -->
+    <button class="sidebar-toggle" aria-label="Показать разделы">
+        <span>☰</span> Меню
+    </button>
+
+    <!-- Панель с кнопками-разделами -->
+    <nav class="sidebar" aria-label="Разделы каталога">
+        <button class="sidebar-btn">Программирование</button>
+        <button class="sidebar-btn">Математика</button>
+        <button class="sidebar-btn">Физика</button>
+        <button class="sidebar-btn">Искусственный интеллект</button>
+        <button class="sidebar-btn">Кибербезопасность</button>
+    </nav>
+
+    <!-- Фон для закрытия -->
+    <div class="overlay"></div>
+    <script>
+    // Данные товаров (должны совпадать с data-category в кнопках)
+    const productsData = [
+        {
+            id: "prod-1",
+            name: "Курс Python",
+            category: "programming",
+            price: 9900,
+            image: "images/python_course.jpg",
+            description: "Программирование на Python с нуля"
+        },
+        {
+            id: "prod-2",
+            name: "Линейная алгебра",
+            category: "math",
+            price: 7500,
+            image: "images/algebra.jpg",
+            description: "Основы матриц и векторов"
+        },
+        {
+            id: "prod-3",
+            name: "Квантовая физика",
+            category: "physics",
+            price: 11200,
+            image: "images/physics.jpg",
+            description: "Введение в квантовую механику"
+        }
+    ];
+
+    // Функция отрисовки товаров
+    // Функция отрисовки товаров с анимацией
+    function renderProducts(category = 'all') {
+        const productsContainer = document.querySelector('.products');
+        productsContainer.style.opacity = '0';
+        
+        setTimeout(() => {
+            productsContainer.innerHTML = '';
+            
+            const filteredProducts = category === 'all' 
+                ? productsData 
+                : productsData.filter(product => product.category === category);
+            
+            filteredProducts.forEach((product, index) => {
+                const productElement = document.createElement('div');
+                productElement.className = 'product interactive-course';
+                productElement.dataset.category = product.category;
+                productElement.style.animationDelay = `${index * 0.1}s`;
+                
+                productElement.innerHTML = `
+                    <img src="${product.image}" alt="${product.name}" class="product-img">
+                    <div class="product-info">
+                        <h3>${product.name}</h3>
+                        <p class="description">${product.description}</p>
+                        <p class="price">${product.price.toLocaleString('ru-RU')} ₽</p>
+                    </div>
+                `;
+
+                // Обработчик клика на весь элемент курса
+                productElement.addEventListener('click', () => {
+                    window.location.href = `course-details.html?id=${product.id}`;
+                });
+
+                productsContainer.appendChild(productElement);
+            });
+            
+            productsContainer.style.opacity = '1';
+        }, 300);
+    }
+
+    // Обработка кликов по кнопкам категорий
+    function setupCategoryButtons() {
+        const buttons = document.querySelectorAll('.category-btn');
+        
+        buttons.forEach(button => {
+            button.addEventListener('click', () => {
+                // Удаляем активный класс у всех кнопок
+                buttons.forEach(btn => btn.classList.remove('active'));
+                
+                // Добавляем активный класс текущей кнопке
+                button.classList.add('active');
+                
+                // Фильтруем товары
+                const category = button.dataset.category;
+                renderProducts(category);
+            });
+        });
+    }
+
+    // Инициализация при загрузке страницы
+    document.addEventListener('DOMContentLoaded', () => {
+        renderProducts(); // Показываем все товары по умолчанию
+        setupCategoryButtons();
+    });
+    </script>
+
+
+    <script>
+        // Управление панелью
+        const toggleBtn = document.querySelector('.sidebar-toggle');
+        const sidebar = document.querySelector('.sidebar');
+        const overlay = document.querySelector('.overlay');
+        const sidebarBtns = document.querySelectorAll('.sidebar-btn');
+
+        // Открытие/закрытие
+        toggleBtn.addEventListener('click', () => {
+            sidebar.classList.toggle('active');
+            overlay.style.display = sidebar.classList.contains('active') ? 'block' : 'none';
+        });
+
+        // Закрытие при клике на фон
+        overlay.addEventListener('click', () => {
+            sidebar.classList.remove('active');
+            overlay.style.display = 'none';
+        });
+
+        // Обработка кликов по кнопкам (заглушка)
+        sidebarBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                console.log('Выбран раздел:', btn.textContent);
+                // Здесь можно добавить логику перехода
+                sidebar.classList.remove('active');
+                overlay.style.display = 'none';
+            });
+        });
+
+    </script>
+
+
+    
+
+</body>
+</html>
